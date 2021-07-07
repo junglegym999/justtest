@@ -16,7 +16,7 @@
 	<h1>게시글 수정</h1>
 	<form name="frm" method="post" action="BoardServlet">
 		<input type="hidden" name="command" value="board_update"> <input
-			type="hidden" name="num" value="${board.name}">
+			type="hidden" name="num" value="${board.num}">
 		<table>
 			<tr>
 				<th>Writer</th>
