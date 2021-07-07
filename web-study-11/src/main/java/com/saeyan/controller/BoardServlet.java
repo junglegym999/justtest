@@ -18,6 +18,7 @@ public class BoardServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#HttpServlet()
+	 * ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„ì•„
 	 */
 	public BoardServlet() {
 		super();
@@ -33,8 +34,8 @@ public class BoardServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 		String command = request.getParameter("command");
-		System.out.println("BoardServlet¿¡¼­ ¿äÃ»À» ¹ÞÀ½À» È®ÀÎ : " + command);
-		// ÇÃÈ£±×·¥ ½ÇÇà¿¡ ¿µÇâÀº ¹ÌÄ¡Áö¾ÊÁö¸¸ µð¹ö±ë¿ëµµ·Î¾¸! ¤¾¤¾
+		System.out.println("BoardServletï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ : " + command);
+		// ï¿½ï¿½È£ï¿½×·ï¿½ ï¿½ï¿½ï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ëµµï¿½Î¾ï¿½! ï¿½ï¿½ï¿½ï¿½
 		ActionFactory af = ActionFactory.getInstance();
 		Action action = af.getAction(command);
 
