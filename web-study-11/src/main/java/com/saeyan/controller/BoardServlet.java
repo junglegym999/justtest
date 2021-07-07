@@ -18,7 +18,6 @@ public class BoardServlet extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#HttpServlet()
-	 * 아아아아아아아아아아아아아아아
 	 */
 	public BoardServlet() {
 		super();

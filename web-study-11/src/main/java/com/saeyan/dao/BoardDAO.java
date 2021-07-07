@@ -102,7 +102,7 @@ public class BoardDAO {
 		}
 	}
 
-	// °Ô½ÃÆÇ ±Û »ó¼¼ ³»¿ë º¸±â : ±Û¹øÈ£·Î Ã£¾Æ¿Â´Ù . : ½ÇÆÐ null;
+	// ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ : ï¿½Û¹ï¿½È£ï¿½ï¿½ Ã£ï¿½Æ¿Â´ï¿½ . : ï¿½ï¿½ï¿½ï¿½ null;
 	public BoardVO selectOneBoardByNum(String num) {
 		String sql = "select * from board where num=?";
 
@@ -197,7 +197,7 @@ public class BoardDAO {
 	}
 
 	public void deleteBoard(String num) {
-		String sql = "select * from board where pass=? and num=?";
+		String sql = "delete board where num=?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
