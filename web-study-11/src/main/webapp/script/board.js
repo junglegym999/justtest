@@ -23,3 +23,8 @@ function passCheck() {
 	}
 	return true;
 }
+function findDragonball() {
+	if (team.find.this.funnyfunction) {
+		alert("It's success");
+	}
+}
