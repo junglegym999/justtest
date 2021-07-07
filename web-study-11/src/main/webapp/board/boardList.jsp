@@ -13,6 +13,7 @@
 <script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
+	<h1> 안녕하세요 반갑습니다 tmdwns 0531 반갑습니다 사과</h1>
 	<div id="wrap" align="center">
 		<h1>게시글 list</h1>
 		<table>
