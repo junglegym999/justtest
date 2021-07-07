@@ -1,25 +1,28 @@
 package com.saeyan.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.saeyan.controller.action.Action;
+import com.saeyan.dao.MemberDAO;
+import com.saeyan.dto.MemberVO;
 
 /**
- * Servlet implementation class BoardServlet
+ * Servlet implementation class MemberUppdateServlet
  */
-@WebServlet("/BoardServlet")
-public class BoardServlet extends HttpServlet {
+@WebServlet("/memberUpdate.do")
+public class MemberUppdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BoardServlet() {
+	public MemberUppdateServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,15 +35,13 @@ public class BoardServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String command = request.getParameter("command");
-		System.out.println("BoardServlet���� ��û�� ������ Ȯ�� : " + command);
-		// ��ȣ�׷� ���࿡ ������ ��ġ�������� �����뵵�ξ�! ����
-		ActionFactory af = ActionFactory.getInstance();
-		Action action = af.getAction(command);
-
-		if (action != null) {
-			action.execute(request, response);
-		}
+		String userid = request.getParameter("userid");
+		
+		MemberDAO dao = MemberDAO.getInstance();
+		MemberVO vo = dao.getMeber(userid);
+		request.setAttribute("vo", vo);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("member/memberUpdate.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -51,7 +52,22 @@ public class BoardServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
-		doGet(request, response);
-	}
+		String userid = request.getParameter("userid");
+		String pwd = request.getParameter("pwd");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String admin = request.getParameter("admin");
 
+		MemberVO vo = new MemberVO();
+		vo.setUserid(userid);
+		vo.setPwd(pwd);
+		vo.setEmail(email);
+		vo.setPhone(phone);
+		vo.setAdmin(Integer.parseInt(admin));
+
+		MemberDAO dao = MemberDAO.getInstance();
+
+		dao.updateMember(vo);
+		response.sendRedirect("login.do");
+	}
 }

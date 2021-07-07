@@ -1,25 +1,27 @@
 package com.saeyan.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.saeyan.controller.action.Action;
+import com.saeyan.dao.MemberDAO;
 
 /**
- * Servlet implementation class BoardServlet
+ * Servlet implementation class idCheckServlet
  */
-@WebServlet("/BoardServlet")
-public class BoardServlet extends HttpServlet {
+@WebServlet("/idCheck.do")
+public class idCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public BoardServlet() {
+	public idCheckServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -32,15 +34,15 @@ public class BoardServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		String command = request.getParameter("command");
-		System.out.println("BoardServlet���� ��û�� ������ Ȯ�� : " + command);
-		// ��ȣ�׷� ���࿡ ������ ��ġ�������� �����뵵�ξ�! ����
-		ActionFactory af = ActionFactory.getInstance();
-		Action action = af.getAction(command);
+		String userid = request.getParameter("userid");
+		MemberDAO dao = MemberDAO.getInstance();
 
-		if (action != null) {
-			action.execute(request, response);
-		}
+		int result = dao.confirmID(userid);
+		request.setAttribute("userid", userid);
+		request.setAttribute("result", result);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("member/idCheck.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 	/**
@@ -50,8 +52,6 @@ public class BoardServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		doGet(request, response);
 	}
-
 }
